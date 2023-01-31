@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Header, Segment } from 'semantic-ui-react';
+import { createId } from '@paralleldrive/cuid2';
 
 export default function EventForm({ setFormOpen, setEvents, createEvent, selectedEvent, updateEvent }) {
 
@@ -16,17 +17,18 @@ export default function EventForm({ setFormOpen, setEvents, createEvent, selecte
 
   function handleInputChange(e) {
     const { name, value } = e.target;
-    setValues({ ...values, [name]: value })
+    setValues({ ...values, [name]: value });
   }
 
   function handleFormSubmit() {
     if (selectedEvent){
-      updateEvent(values)
+      updateEvent(values); 
+      // updateEvent(...selectedEvent, ...values) - substitute the changed properties with new values
+    }
+    else {
+      createEvent({ ...values, id: createId(), hostedBy: 'Me', hostPhotoURL: '/assets/user.png', attendees: [] });
       console.log(values);
     }
-    else
-      createEvent({ ...values, id: 3, hostedBy: 'Me', hostPhotoURL: '/assets/user.png', attendees: [] });
-
     setFormOpen(false);
   }
 

@@ -11,7 +11,7 @@ export default function EventListItem({event, selectEvent, deleteEvent}) {
             <Item.Image size='tiny' circular src={event.hostPhotoURL} />
             <Item.Content>
               <Item.Header content={event.title} />
-              <Item.Description content={event.hostedBy} />
+              <Item.Description content={event.id} />
             </Item.Content>
           </Item>
         </Item.Group>
