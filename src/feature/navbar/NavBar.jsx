@@ -11,7 +11,7 @@ export default function NavBar({setFormOpen}) {
 				</Menu.Item>
 				<Menu.Item name='Events' />
 				<Menu.Item>
-					<Button positive inverted content='Create Event' onClick={() => setFormOpen(true)} />
+					<Button positive inverted content='Create Event' onClick={() => setFormOpen()} />
 				</Menu.Item>
 				<Menu.Item position='right'>
 					<Button basic inverted content='Login' />
