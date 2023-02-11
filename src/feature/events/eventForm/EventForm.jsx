@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import { Button, Form, Header, Segment } from 'semantic-ui-react';
 import { createId } from '@paralleldrive/cuid2';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateEvent, createEvent } from '../eventActions';
 
-export default function EventForm({ setFormOpen, setEvents, createEvent, selectedEvent, updateEvent }) {
+export default function EventForm({ match, history }) {
+
+  const dispatch = useDispatch();
+
+  const selectedEvent = useSelector(state => state.event.events.
+    find(event => event.id === match.params.id));
 
   const initialValues = selectedEvent ? selectedEvent : {
     title: '',
-    category: '',
+    category: 'culture',
     description: '',
     city: '',
     venue: '',
@@ -22,15 +29,15 @@ export default function EventForm({ setFormOpen, setEvents, createEvent, selecte
   }
 
   function handleFormSubmit() {
-    if (selectedEvent){
-      updateEvent(values); 
-      // updateEvent(...selectedEvent, ...values) - substitute the changed properties with new values
+    if (selectedEvent) {
+      dispatch(updateEvent({ ...selectedEvent, ...values }));
+      history.push(`/events/${selectedEvent.id}`);
     }
     else {
-      createEvent({ ...values, id: createId(), hostedBy: 'Me', hostPhotoURL: '/assets/user.png', attendees: [] });
-      console.log(values);
+      const newID = createId();
+      dispatch(createEvent({ ...values, id: newID, hostedBy: 'Me', hostPhotoURL: '/assets/user.png', attendees: [] }));
+      history.push(`/events/${newID}`);
     }
-    setFormOpen(false);
   }
 
   return (
@@ -80,7 +87,7 @@ export default function EventForm({ setFormOpen, setEvents, createEvent, selecte
             onChange={(e) => handleInputChange(e)} />
         </Form.Field>
         <Button type='submit' floated='right' positive content='Submit' />
-        <Button as={Link} to='/events' type='submit' floated='right' content='Cancel' 
+        <Button as={Link} to='/events' type='submit' floated='right' content='Cancel'
         // onClick={() => setFormOpen(false)} 
         />
       </Form>

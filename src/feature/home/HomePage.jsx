@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { Container, Segment, Image, Header, Button, Icon } from 'semantic-ui-react';
 
 export default function HomePage({history}) {

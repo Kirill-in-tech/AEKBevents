@@ -18,7 +18,7 @@ export const sampleData = [
         },
         {
             id: 'b',
-            name: 'Manaka',
+            name: 'Aliska',
             photoURL: '/aliska.jpeg'
         }
     ]
@@ -42,7 +42,7 @@ export const sampleData = [
           },
           {
               id: 'b',
-              name: 'Manaka',
+              name: 'Aliska',
               photoURL: '/aliska.jpeg'
           }
       ]

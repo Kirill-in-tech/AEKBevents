@@ -4,9 +4,9 @@ import { Button, Container, Menu } from "semantic-ui-react";
 import SignedInMenu from './SignedInMenu';
 import SignedOutMenu from './SignedOutMenu';
 
-export default function NavBar({setFormOpen}) {
+export default function NavBar() {
 
-	const [authenticated, setAuthenticated] =useState(false);
+	const [authenticated, setAuthenticated] = useState(false);
 	const history = useHistory();
 
 	function handleSignOut() {
@@ -22,10 +22,11 @@ export default function NavBar({setFormOpen}) {
 					AEKB
 				</Menu.Item>
 				<Menu.Item as={NavLink} exact to='/events' name='Events'/>
+				<Menu.Item as={NavLink} exact to='/sandbox' name='Sandbox'/>
 				{authenticated &&
 				<Menu.Item as={NavLink} to='/createEvent' 
 					style={{backgroundColor:'rgba(255, 255, 255, 0.0)'}}>
-					<Button positive inverted content='Create Event' onClick={() => setFormOpen()} />
+					<Button positive inverted content='Create Event' />
 				</Menu.Item>}
 
 				{authenticated 
