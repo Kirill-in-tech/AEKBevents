@@ -8,8 +8,7 @@ import EventDetailedSidebar from './EventDetailedSidebar';
 
 export default function EventDetailedPage({match}) {
 
-  const event = useSelector(state => state.event.events.
-    find(event => event.id === match.params.id));
+  const event = useSelector(state => state.event.events.find(event => event.id === match.params.id));
   
   return (
     <Grid>
